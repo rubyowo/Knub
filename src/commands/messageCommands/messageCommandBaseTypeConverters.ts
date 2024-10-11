@@ -55,7 +55,7 @@ export const messageCommandBaseTypeConverters = {
       throw new TypeConversionError(`Could not find user for user id \`${userId}\``);
     }
 
-    const member = message.channel.guild.members.cache.get(user.id);
+    const member = message.guild?.members.cache.get(user.id);
     if (!member) {
       throw new TypeConversionError(`Could not find guild member for user id \`${userId}\``);
     }
@@ -73,8 +73,8 @@ export const messageCommandBaseTypeConverters = {
       throw new TypeConversionError(`\`${disableCodeBlocks(value)}\` is not a valid channel`);
     }
 
-    const guild = message.channel.guild;
-    const channel = guild.channels.cache.get(channelId);
+    const guild = message.guild;
+    const channel = guild?.channels.cache.get(channelId);
     if (!channel) {
       throw new TypeConversionError(`Could not find channel for channel id \`${channelId}\``);
     }
@@ -92,8 +92,8 @@ export const messageCommandBaseTypeConverters = {
       throw new TypeConversionError(`\`${disableCodeBlocks(value)}\` is not a valid channel`);
     }
 
-    const guild = message.channel.guild;
-    const channel = guild.channels.cache.get(channelId);
+    const guild = message.guild;
+    const channel = guild?.channels.cache.get(channelId);
     if (!channel) {
       throw new TypeConversionError(`Could not find channel for channel id \`${channelId}\``);
     }
@@ -115,8 +115,8 @@ export const messageCommandBaseTypeConverters = {
       throw new TypeConversionError(`\`${disableCodeBlocks(value)}\` is not a valid channel`);
     }
 
-    const guild = message.channel.guild;
-    const channel = guild.channels.cache.get(channelId);
+    const guild = message.guild;
+    const channel = guild?.channels.cache.get(channelId);
     if (!channel) {
       throw new TypeConversionError(`Could not find channel for channel id \`${channelId}\``);
     }
@@ -138,7 +138,7 @@ export const messageCommandBaseTypeConverters = {
       throw new TypeConversionError(`\`${disableCodeBlocks(value)}\` is not a valid role`);
     }
 
-    const role = message.channel.guild.roles.cache.get(roleId);
+    const role = message.guild?.roles.cache.get(roleId);
     if (!role) {
       throw new TypeConversionError(`Could not find role for role id \`${roleId}\``);
     }
