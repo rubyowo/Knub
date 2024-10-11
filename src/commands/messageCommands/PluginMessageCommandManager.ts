@@ -79,7 +79,7 @@ export class PluginMessageCommandManager<TPluginData extends AnyPluginData<any>>
   }
 
   public async runFromMessage(msg: Message): Promise<void> {
-    if (msg.content == null || msg.content.trim() === "") {
+    if (msg.content == null || msg.content.trim() === "" || !msg.channel.isSendable()) {
       return;
     }
 

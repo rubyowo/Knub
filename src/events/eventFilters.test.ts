@@ -1,5 +1,5 @@
 import { assert, expect } from "chai";
-import { Message } from "discord.js";
+import { Message, OmitPartialGroupDMChannel } from "discord.js";
 import { describe, it } from "mocha";
 import { GlobalPluginData, GuildPluginData } from "../plugins/PluginData";
 import { onlyGuild } from "./eventFilters";
@@ -16,7 +16,7 @@ describe("Event filters", () => {
           channel: {
             guild,
           },
-        } as unknown as Message,
+        } as unknown as OmitPartialGroupDMChannel<Message>,
       },
       pluginData: {
         context: "guild",
@@ -33,7 +33,7 @@ describe("Event filters", () => {
           channel: {
             guild2,
           },
-        } as unknown as Message,
+        } as unknown as OmitPartialGroupDMChannel<Message>,
       },
       pluginData: {
         context: "guild",
@@ -49,7 +49,7 @@ describe("Event filters", () => {
           channel: {
             guild,
           },
-        } as unknown as Message,
+        } as unknown as OmitPartialGroupDMChannel<Message>,
       },
       pluginData: {
         context: "global",
