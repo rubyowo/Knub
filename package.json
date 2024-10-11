@@ -30,8 +30,8 @@
     }
   },
   "dependencies": {
-    "discord-api-types": "^0.37.67",
-    "discord.js": "^14.14.1",
+    "discord-api-types": "^0.37.101",
+    "discord.js": "^15.0.0-dev.1729383186-6cbe2487b",
     "knub-command-manager": "^9.1.0",
     "ts-essentials": "^9",
     "zod": "^3.19.1"
@@ -53,6 +53,6 @@
     "/dist"
   ],
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   }
 }

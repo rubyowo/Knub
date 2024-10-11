@@ -146,14 +146,14 @@ export class Knub extends EventEmitter {
       this.log("info", "Still connecting...");
     }, 30 * 1000);
 
-    this.client.once("shardReady", () => {
+    this.client.once("clientReady", () => {
       if (this.#loadErrorInterval) {
         clearInterval(this.#loadErrorInterval);
       }
       this.log("info", "Bot connected!");
     });
 
-    this.client.once("ready", async () => {
+    this.client.ws.once("ready", async () => {
       this.log("info", "Received READY");
 
       const autoRegisterApplicationCommands = this.options.autoRegisterApplicationCommands ?? true;
