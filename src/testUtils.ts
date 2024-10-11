@@ -1,11 +1,11 @@
 import { noop } from "./utils";
 import events = require("events");
 import {
+  AnnouncementChannel,
   AnyThreadChannel,
   ChannelManager,
   ChannelType,
   Client,
-  DMChannel,
   Guild,
   GuildChannel,
   GuildChannelManager,
@@ -13,10 +13,11 @@ import {
   GuildMember,
   GuildMemberManager,
   Message,
-  NewsChannel,
+  OmitPartialGroupDMChannel,
   Options,
   Role,
   RoleManager,
+  SendableChannels,
   Snowflake,
   TextChannel,
   ThreadChannel,
@@ -225,10 +226,10 @@ export function createMockTextChannel(client: Client, guildId: Snowflake, data =
 let mockMessageId = 40000;
 export function createMockMessage(
   client: Client,
-  channel: TextChannel | DMChannel | NewsChannel | ThreadChannel,
+  channel: SendableChannels,
   author: User,
   data = {},
-): Message {
+): OmitPartialGroupDMChannel<Message> {
   // @ts-ignore
   // This type assertation is needed because the constructor is marked as private
   const message = new Message(client, {
@@ -240,7 +241,7 @@ export function createMockMessage(
     ...data,
   }) as Message;
 
-  return message;
+  return message as OmitPartialGroupDMChannel<Message>;
 }
 
 let mockRoleId = 50000;
@@ -264,7 +265,7 @@ export function createMockRole(guild: Guild, data = {}, overrideId: string | nul
 }
 
 let mockThreadId = 60000;
-export function createMockThread(channel: NewsChannel | GuildChannel): AnyThreadChannel {
+export function createMockThread(channel: AnnouncementChannel | GuildChannel): AnyThreadChannel {
   const id = (++mockThreadId).toString();
   channel.guild.channels.cache.set(
     id,
